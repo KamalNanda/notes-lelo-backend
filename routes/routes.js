@@ -3,7 +3,9 @@ const controllers = require('../controllers/note')
 const router = express.Router()
 
 
-
+router.get('/' , (req , res , next)=> {
+    res.json("Notes Lelo!!!")
+})
 router.get('/api' , (req , res , next)=> {
     res.json("Notes Lelo!!!")
 })
