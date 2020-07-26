@@ -38,8 +38,11 @@ const getNotesById = async (req , res , next)=> {
 const createNotes = async (req, res , next) => {
     const {name , author} = req.body
     const newNote = new Note({
-        name,
+        title,
         author,
+        semester,
+        link,
+        course
     })
     try{
         await newNote.save()
