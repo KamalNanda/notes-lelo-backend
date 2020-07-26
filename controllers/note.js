@@ -42,7 +42,8 @@ const createNotes = async (req, res , next) => {
         author,
         semester,
         link,
-        course
+        course,
+        subject
     })
     try{
         await newNote.save()
