@@ -15,6 +15,10 @@ const notesSchema = new Schema({
         type : String,
         required : true
     },
+    subject : {
+        type : String.
+        required : true
+    },
     semester : {
         type: Number,
         required : true
