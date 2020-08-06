@@ -36,7 +36,7 @@ const getNotesById = async (req , res , next)=> {
 }
 
 const createNotes = async (req, res , next) => {
-    const {title , semester , link , course , subject , author, isRequired} = req.body
+    const {title , semester , link , course , subject , author, isrestricted} = req.body
     const newNote = new Note({
         title,
         author,
@@ -44,7 +44,7 @@ const createNotes = async (req, res , next) => {
         link,
         course,
         subject,
-        isRequired
+        isrestricted
     })
     try{
         await newNote.save()
