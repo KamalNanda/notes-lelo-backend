@@ -28,7 +28,7 @@ const notesSchema = new Schema({
         required : true
     },
     isrestricted : {
-        type: String,
+        type  : String,
         required : true
     }
 })
