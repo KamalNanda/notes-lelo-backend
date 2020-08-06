@@ -26,10 +26,6 @@ const notesSchema = new Schema({
     course : {
         type  : String,
         required : true
-    },
-    isrestricted : {
-        type  : String,
-        required : true
     }
 })
 
