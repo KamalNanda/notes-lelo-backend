@@ -80,7 +80,7 @@ const socialLogin = async(req, res, next) => {
     console.log(err)
     return next(err)
   }
-  res.status(201).json({newUser})
+  res.status(201).json({user: newUser , pass: password})
 }
 
 const getUsers = async (rq, res, next) => {
