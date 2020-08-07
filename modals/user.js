@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const notesSchema = new Schema({
+const userSchema = new Schema({
     name : {
         type : String,
         required : true
@@ -14,7 +14,20 @@ const notesSchema = new Schema({
     password : {
         type : String,
         required : true
-    }
+    },
+    course : {
+        type : String,
+        required : true
+    },
+    college : {
+        type : String,
+        required : true
+    },
+    semester : {
+        type : Number,
+        required : true
+    },
+
 })
 
-module.exports = mongoose.model("Users" , notesSchema)
+module.exports = mongoose.model("Users" , userSchema)
