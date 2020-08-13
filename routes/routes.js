@@ -18,4 +18,5 @@ router.post('/api/signup' , userControllers.signUp)
 router.post('/api/login' , userControllers.login)
 router.get('/api/users', userControllers.getUsers)
 router.post('/api/socialLogin' , userControllers.socialLogin)
+router.post('/api/socialRegister' , userControllers.socialRegister)
 module.exports = router
