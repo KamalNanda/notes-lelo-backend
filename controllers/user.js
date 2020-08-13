@@ -51,6 +51,21 @@ const login = async (req, res, next) => {
   }
   res.json({message: "Logged In" , user : existingUser})
 }
+const socialRegister = async(req, res, next) => {
+  const {email , name, password} = req.body
+  let existingUser
+  try{
+    existingUser = await User.findOne({email : email})
+  }catch(err){
+    console.log(err)
+    return next(err)
+  }
+  if(!existingUser){
+    console.log("User Not Found")
+    return res.json({user : "false"})
+  }
+  return res.json({user: existingUser , pass: existingUser.password})
+}
 
 const socialLogin = async(req, res, next) => {
   const {name , email , password, course, college, semester} = req.body
@@ -98,3 +113,4 @@ exports.login = login
 exports.signUp = signUp
 exports.getUsers = getUsers
 exports.socialLogin= socialLogin
+exports.socialRegister = socialRegister
