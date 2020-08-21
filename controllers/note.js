@@ -34,7 +34,50 @@ const getNotesById = async (req , res , next)=> {
     
     res.send({note})
 }
+const getNotesByCourse = async (req , res , next)=> {
+  const course = req.params.course
+    let notes
+    try{
+        await Note.find({course : course} , function (err, note){
+          if(err) return next(err)
 
+          notes = note
+        })
+    } catch (err) {
+        console.log(err)
+        return next(err)
+    }
+    if(!notes){
+        return res.status(404).json("Page Not found :)")
+    }
+    res.send({notes})
+}
+const getNotesBySemester = async (req , res , next)=> {
+    let note
+    try{
+        note =  await Note.find({course : req.params.course , semester: req.params.semester})
+    } catch (err) {
+        console.log(err)
+        return next(err)
+    }
+    if(!note){
+        return res.status(404).json("Page Not found :)")
+    }
+    res.send({note})
+}
+const getNotesBySubject = async(req, res, next) => {
+  let note
+  try{
+    note= await Note.find({course: req.params.course , semester : req.params.semester , subject: req.params.subject})
+  } catch(err){
+    console.log(err)
+    return next(err)
+  }
+  if(!note){
+    return res.status(404).json("Page Not found ")
+  }
+  res.send({note})
+}
 const createNotes = async (req, res , next) => {
     const {title , semester , link , course , subject , author , isreq} = req.body
     const newNote = new Note({
@@ -95,3 +138,7 @@ exports.createNotes = createNotes
 exports.deleteNotes = deleteNotes
 exports.getAdmins = getAdmins
 exports.loginAdmin = loginAdmin
+
+exports.getNotesByCourse = getNotesByCourse
+exports.getNotesBySemester = getNotesBySemester
+exports.getNotesBySubject = getNotesBySubject
