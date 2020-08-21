@@ -19,4 +19,7 @@ router.post('/api/login' , userControllers.login)
 router.get('/api/users', userControllers.getUsers)
 router.post('/api/socialLogin' , userControllers.socialLogin)
 router.post('/api/socialRegister' , userControllers.socialRegister)
+router.get('/api/notes/:course', controllers.getNotesByCourse)
+router.get('/api/notes/:course/:semester' , controllers.getNotesBySemester)
+router.get('/api/notes/:course/:semester/:subject', controllers.getNotesBySubject)
 module.exports = router
