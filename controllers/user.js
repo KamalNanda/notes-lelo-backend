@@ -68,7 +68,7 @@ const socialRegister = async(req, res, next) => {
 }
 
 const socialLogin = async(req, res, next) => {
-  const {name , email , password, course, college, semester} = req.body
+  const {name , email , password, course, college, semester, imgUrl} = req.body
   let existingUser
   try{
     existingUser = await User.findOne({email : email})
@@ -78,8 +78,8 @@ const socialLogin = async(req, res, next) => {
   }
   if (existingUser){
     console.log("User already existed")
-    let {_id, name, email, college, course, semester, passord} = existingUser
-    return res.json({user: {_id, name, email, college, course, semester} , pass: password})
+    let {_id, name, email, college, course, semester, password, imgUrl} = existingUser
+    return res.json({user: {_id, name, email, college, course, semester, imgUrl} , pass: password})
   }
   const newUser = new User({
     name,
@@ -87,7 +87,8 @@ const socialLogin = async(req, res, next) => {
     password,
     course,
     college,
-    semester
+    semester,
+    imgUrl
   })
   try {
     await newUser.save()
