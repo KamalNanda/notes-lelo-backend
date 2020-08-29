@@ -31,8 +31,8 @@ const notesSchema = new Schema({
         type : String,
         required : true
     },
-    type: {
-        type: : String,
+    type : {
+        type : String,
         required : true
     }
 })
