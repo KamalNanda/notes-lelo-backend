@@ -18,38 +18,32 @@ const getAllNotes = (req , res , next)=> {
 
 const getNotesById = async (req , res , next)=> {
     const noteId = req.params.notesId
-    
+
     let note
     try{
         note =  await Note.findById(noteId)
-        
+
     } catch (err) {
         console.log(err)
         return next(err)
     }
-          
-    if(!note){ 
+    if(!note){
         return res.status(404).json("Page Not found :)")
     }
-    
     res.send({note})
 }
 const getNotesByCourse = async (req , res , next)=> {
-    let notes
+    let note
     try{
-        await Note.find({course : req.params.course} , function (err, note){
-          if(err) return next(err)
-
-          notes = note
-        })
+        note =  await Note.find({course : req.params.course})
     } catch (err) {
         console.log(err)
         return next(err)
     }
-    if(!notes){
+    if(!note){
         return res.status(404).json("Page Not found :)")
     }
-    res.send({notes})
+    res.send({note})
 }
 const getNotesBySemester = async (req , res , next)=> {
     let note
@@ -80,20 +74,7 @@ const getNotesBySubject = async(req, res, next) => {
 const getNotesByType = async(req, res, next) => {
   let note
   try{
-    note= await Note.find({course: req.params.course , semester : req.params.semester , subject: req.params.subject, type: req.params.type})
-  } catch(err){
-    console.log(err)
-    return next(err)
-  }
-  if(!note){
-    return res.status(404).json("Page Not found ")
-  }
-  res.send({note})
-}
-const getNotesByType = async(req, res, next) => {
-  let note
-  try{
-    note= await Note.find({course: req.params.course , semester : req.params.semester , subject: req.params.subject, type: req.params.type})
+    note= await Note.find({course: req.params.course , semester : req.params.semester , subject: req.params.subject, ctype: req.params.ctype})
   } catch(err){
     console.log(err)
     return next(err)
@@ -104,16 +85,15 @@ const getNotesByType = async(req, res, next) => {
   res.send({note})
 }
 const createNotes = async (req, res , next) => {
-    const {title , semester , link , course , subject , author , isreq, type} = req.body
     const newNote = new Note({
-        title,
-        author,
-        semester,
-        link,
-        course,
-        subject,
-        isreq,
-        type
+      name : req.body.name,
+      author : req.body.author,
+      semester : req.body.semester,
+      link : req.body.link,
+      course : req.body.course,
+      subject : req.body.subject,
+      isreq : req.body.isreq,
+      ctype: req.body.ctype
     })
     try{
         await newNote.save()
@@ -148,7 +128,7 @@ const getAdmins = (req , res , next)=> {
 
 const loginAdmin = (req , res , next) => {
     const {email , password} = req.body
-    
+
     if(admin.email !== email){
         return res.status(401).json("Email not found")
     }
