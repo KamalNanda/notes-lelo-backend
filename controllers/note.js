@@ -151,7 +151,6 @@ exports.createNotes = createNotes
 exports.deleteNotes = deleteNotes
 exports.getAdmins = getAdmins
 exports.loginAdmin = loginAdmin
-exports.getNotesByType = getNotesByType
 exports.getNotesByCourse = getNotesByCourse
 exports.getNotesBySemester = getNotesBySemester
 exports.getNotesBySubject = getNotesBySubject
