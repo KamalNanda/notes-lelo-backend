@@ -2,36 +2,39 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const userSchema = new Schema({
+const notesSchema = new Schema({
     name : {
         type : String,
         required : true
     },
-    email : {
+    author : {
         type : String,
         required : true
     },
-    password : {
+    isreq : {
         type : String,
         required : true
     },
-    imgUrl : {
-        type : String,
-        required : true
-    },
-    course : {
-        type : String,
-        required : true
-    },
-    college : {
-        type : String,
-        required : true
-    },
-    semester : {
-        type : Number,
-        required : true
-    },
-
+    link : {
+       type : String,
+       required : true
+   },
+   subject : {
+       type : String,
+       required : true
+   },
+   semester : {
+       type: Number,
+       required : true
+   },
+   course : {
+       type  : String,
+       required : true
+   },
+   ctype: {
+     type : String,
+     required : true
+   }
 })
 
-module.exports = mongoose.model("Users" , userSchema)
+module.exports = mongoose.model("Notes" , notesSchema)
