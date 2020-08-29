@@ -35,10 +35,9 @@ const getNotesById = async (req , res , next)=> {
     res.send({note})
 }
 const getNotesByCourse = async (req , res , next)=> {
-  const course = req.params.course
     let notes
     try{
-        await Note.find({course : course} , function (err, note){
+        await Note.find({course : req.params.course} , function (err, note){
           if(err) return next(err)
 
           notes = note
@@ -105,7 +104,7 @@ const getNotesByType = async(req, res, next) => {
   res.send({note})
 }
 const createNotes = async (req, res , next) => {
-    const {title , semester , link , course , subject , author , isreq} = req.body
+    const {title , semester , link , course , subject , author , isreq, type} = req.body
     const newNote = new Note({
         title,
         author,
@@ -113,7 +112,8 @@ const createNotes = async (req, res , next) => {
         link,
         course,
         subject,
-        isreq
+        isreq,
+        type
     })
     try{
         await newNote.save()
