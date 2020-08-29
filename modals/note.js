@@ -30,6 +30,10 @@ const notesSchema = new Schema({
     isreq : {
         type : String,
         required : true
+    },
+    type: {
+        type: : String,
+        required : true
     }
 })
 
