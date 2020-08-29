@@ -78,6 +78,19 @@ const getNotesBySubject = async(req, res, next) => {
   }
   res.send({note})
 }
+const getNotesByType = async(req, res, next) => {
+  let note
+  try{
+    note= await Note.find({course: req.params.course , semester : req.params.semester , subject: req.params.subject, type: req.params.type})
+  } catch(err){
+    console.log(err)
+    return next(err)
+  }
+  if(!note){
+    return res.status(404).json("Page Not found ")
+  }
+  res.send({note})
+}
 const createNotes = async (req, res , next) => {
     const {title , semester , link , course , subject , author , isreq} = req.body
     const newNote = new Note({
@@ -138,7 +151,7 @@ exports.createNotes = createNotes
 exports.deleteNotes = deleteNotes
 exports.getAdmins = getAdmins
 exports.loginAdmin = loginAdmin
-
+exports.getNotesByType = getNotesByType
 exports.getNotesByCourse = getNotesByCourse
 exports.getNotesBySemester = getNotesBySemester
 exports.getNotesBySubject = getNotesBySubject
