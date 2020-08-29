@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const notesSchema = new Schema({
-    title : {
+    name : {
         type : String,
         required : true
     },
@@ -11,30 +11,30 @@ const notesSchema = new Schema({
         type : String,
         required : true
     },
-    link : {
-        type : String,
-        required : true
-    },
-    subject : {
-        type : String,
-        required : true
-    },
-    semester : {
-        type: Number,
-        required : true
-    },
-    course : {
-        type  : String,
-        required : true
-    },
     isreq : {
         type : String,
         required : true
     },
-    type : {
-        type : String,
-        required : true
-    }
+    link : {
+       type : String,
+       required : true
+   },
+   subject : {
+       type : String,
+       required : true
+   },
+   semester : {
+       type: Number,
+       required : true
+   },
+   course : {
+       type  : String,
+       required : true
+   },
+   ctype: {
+     type : String,
+     required : true
+   }
 })
 
 module.exports = mongoose.model("Notes" , notesSchema)
