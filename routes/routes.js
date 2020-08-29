@@ -22,6 +22,5 @@ router.post('/api/socialRegister' , userControllers.socialRegister)
 router.get('/api/notes/:course', controllers.getNotesByCourse)
 router.get('/api/notes/:course/:semester' , controllers.getNotesBySemester)
 router.get('/api/notes/:course/:semester/:subject', controllers.getNotesBySubject)
-router.get('/api/notes/:course/:semester/:subject/:type', controllers.getNotesByType)
-
+router.get('/api/notes/:course/:semester/:subject/:ctype', controllers.getNotesByType)
 module.exports = router
