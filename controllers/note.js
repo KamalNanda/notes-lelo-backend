@@ -1,13 +1,6 @@
 
 const Note = require('../modals/note')
 
-var admin = {
-    'id' : "admin-1",
-    'name' : "Admin",
-    'email' : "Admin@noteslelo.com",
-    'password' : "Admin@2020"
-}
-
 const getAllNotes = (req , res , next)=> {
     const notes = Note.find({})
     .then( notes =>{
@@ -122,28 +115,34 @@ const deleteNotes = async (req , res , next)=> {
     res.status(200).json("Deleted")
 }
 
-const getAdmins = (req , res , next)=> {
-    res.json(admin)
+const updateNotes = async (req, res, next) => {
+  let updateNote;
+  try{
+      updateNote = await Note.findById(req.params.notesId)
+  } catch(err) {
+      console.log(err)
+      return next(err)
+  }
+  updateNote.name = req.body.name
+  updateNote.author = req.body.author
+  updateNote.subject = req.body.subject
+  updateNote.isreq = req.body.isreq
+  updateNote.semester = req.body.semester
+  updateNote.course = req.body.course
+  updateNote.ctype = req.body.ctype
+  updateNote.link = req.body.link
+  try{
+    await updateNote.save()
+  } catch(err){
+    console.log(err)
+    return next(err)
+  }
+  res.status(200).json({updateNote})
 }
-
-const loginAdmin = (req , res , next) => {
-    const {email , password} = req.body
-
-    if(admin.email !== email){
-        return res.status(401).json("Email not found")
-    }
-    else if(admin.password !== password){
-        return res.status(401).json("Password doesn't match")
-    }
-    else res.json("Logged In :) ")
-}
-
 exports.getAllNotes = getAllNotes
 exports.getNotesById = getNotesById
 exports.createNotes = createNotes
-exports.deleteNotes = deleteNotes
-exports.getAdmins = getAdmins
-exports.loginAdmin = loginAdmin
+exports.deleteNotes = deleteNote
 exports.getNotesByCourse = getNotesByCourse
 exports.getNotesBySemester = getNotesBySemester
 exports.getNotesBySubject = getNotesBySubject
