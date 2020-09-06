@@ -7,9 +7,6 @@ const router = express.Router()
 router.get('/' , (req , res , next)=> {
     res.json("Notes Lelo!!!")
 })
-router.get('/api' , (req , res , next)=> {
-    res.json("Notes Lelo!!!")
-})
 router.get('/api/notes', controllers.getAllNotes)
 router.get('/api/notes/:notesId' , controllers.getNotesById )
 router.post('/api/notes' , controllers.createNotes)
