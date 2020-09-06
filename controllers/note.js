@@ -147,3 +147,4 @@ exports.getNotesByCourse = getNotesByCourse
 exports.getNotesBySemester = getNotesBySemester
 exports.getNotesBySubject = getNotesBySubject
 exports.getNotesByType = getNotesByType
+exports.updateNotes = updateNotes
