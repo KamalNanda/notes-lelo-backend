@@ -142,7 +142,7 @@ const updateNotes = async (req, res, next) => {
 exports.getAllNotes = getAllNotes
 exports.getNotesById = getNotesById
 exports.createNotes = createNotes
-exports.deleteNotes = deleteNote
+exports.deleteNotes = deleteNotes
 exports.getNotesByCourse = getNotesByCourse
 exports.getNotesBySemester = getNotesBySemester
 exports.getNotesBySubject = getNotesBySubject
