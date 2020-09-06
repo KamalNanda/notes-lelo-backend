@@ -1,5 +1,22 @@
 const User = require('../modals/user')
+var admin = {
+    'id' : "admin-1",
+    'name' : "Admin",
+    'email' : "admin@noteslelo.com",
+    'password' : "Admin@2020"
+}
 
+const loginAdmin = (req , res , next) => {
+    const {email , password} = req.body
+
+    if(admin.email !== email){
+        return res.status(401).json("Email not found")
+    }
+    else if(admin.password !== password){
+        return res.status(401).json("Password doesn't match")
+    }
+    else res.json({message: "login" , email: email, name: admin.name, token: "K95990NJ17057MN98613KM95606J"})
+}
 const signUp = async (req , res , next) => {
   const {name , email , password, course, college, semester} = req.body
   let existingUser
@@ -115,3 +132,4 @@ exports.signUp = signUp
 exports.getUsers = getUsers
 exports.socialLogin= socialLogin
 exports.socialRegister = socialRegister
+exports.loginAdmin = loginAdmin
