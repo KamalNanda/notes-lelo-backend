@@ -119,7 +119,7 @@ const socialLogin = async(req, res, next) => {
 const getUsers = async (rq, res, next) => {
   let users
   try{
-    users = await User.find({} , '-password')
+    users = await User.find({})
   } catch (error){
     const err= "Fetching User Failed! Try Later "
     next (error)
