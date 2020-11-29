@@ -34,6 +34,18 @@ const notesSchema = new Schema({
    ctype: {
      type : String,
      required : true
+   },
+   likes: {
+    type: Array,
+    required: false 
+   },
+   dislikes: {
+    type: Array,
+    required: false 
+   },
+   clicks: {
+       type: Number,
+       required: false
    }
 })
 
