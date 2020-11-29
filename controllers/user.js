@@ -39,9 +39,9 @@ const signUp = async (req , res , next) => {
     name,
     email,
     password,
-    gender,
     course,
     college,
+    gender,
     semester
   })
   try {
