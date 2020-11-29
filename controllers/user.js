@@ -1,4 +1,5 @@
 const User = require('../modals/user')
+
 var admin = {
     'id' : "admin-1",
     'name' : "Admin",
@@ -17,8 +18,9 @@ const loginAdmin = (req , res , next) => {
     }
     else res.json({message: "login" , email: email, name: admin.name, token: "K95990NJ17057MN98613KM95606J"})
 }
+
 const signUp = async (req , res , next) => {
-  const {name , email , password, course, college, semester} = req.body
+  const {name , email , password, course, college,gender, semester} = req.body
   let existingUser
   try{
     existingUser = await User.findOne({email : email})
@@ -37,6 +39,7 @@ const signUp = async (req , res , next) => {
     name,
     email,
     password,
+    gender,
     course,
     college,
     semester
@@ -68,6 +71,7 @@ const login = async (req, res, next) => {
   }
   res.json({message: "Logged In" , user : existingUser})
 }
+
 const socialRegister = async(req, res, next) => {
   const {email , name, password} = req.body
   let existingUser
@@ -85,7 +89,7 @@ const socialRegister = async(req, res, next) => {
 }
 
 const socialLogin = async(req, res, next) => {
-  const {name , email , password, course, college, semester, imgUrl} = req.body
+  const {name , email , password, course, college, semester} = req.body
   let existingUser
   try{
     existingUser = await User.findOne({email : email})
@@ -95,8 +99,7 @@ const socialLogin = async(req, res, next) => {
   }
   if (existingUser){
     console.log("User already existed")
-    let {_id, name, email, college, course, semester, password, imgUrl} = existingUser
-    return res.json({user: {_id, name, email, college, course, semester, imgUrl} , pass: password})
+    return res.json({user: existingUser , pass: password})
   }
   const newUser = new User({
     name,
@@ -104,8 +107,7 @@ const socialLogin = async(req, res, next) => {
     password,
     course,
     college,
-    semester,
-    imgUrl
+    semester
   })
   try {
     await newUser.save()
@@ -113,13 +115,13 @@ const socialLogin = async(req, res, next) => {
     console.log(err)
     return next(err)
   }
-  res.status(201).json({user: newUser , pass: password})
+  res.status(201).json({newUser})
 }
 
 const getUsers = async (rq, res, next) => {
   let users
   try{
-    users = await User.find({})
+    users = await User.find({} , '-password')
   } catch (error){
     const err= "Fetching User Failed! Try Later "
     next (error)

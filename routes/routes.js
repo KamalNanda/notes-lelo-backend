@@ -22,4 +22,7 @@ router.get('/api/notes/:course', controllers.getNotesByCourse)
 router.get('/api/notes/:course/:semester' , controllers.getNotesBySemester)
 router.get('/api/notes/:course/:semester/:subject', controllers.getNotesBySubject)
 router.get('/api/notes/:course/:semester/:subject/:ctype', controllers.getNotesByType)
+router.put('/api/likenote' , controllers.likeNote)
+router.put('/api/dislikenote' , controllers.dislikeNote)
+router.put('/api/clicknote' , controllers.clickNote)
 module.exports = router
