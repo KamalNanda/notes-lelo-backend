@@ -9,17 +9,17 @@ const userSchema = new Schema({
     },
     email : {
         type : String,
-        required : true
+        required : true 
     },
     password : {
         type : String,
         required : true
     },
-    imgUrl : {
+    course : {
         type : String,
         required : true
     },
-    course : {
+    gender : {
         type : String,
         required : true
     },
