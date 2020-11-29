@@ -15,6 +15,10 @@ const userSchema = new Schema({
         type : String,
         required : true
     },
+    imgUrl : {
+        type: String,
+        required : true
+    },
     course : {
         type : String,
         required : true
