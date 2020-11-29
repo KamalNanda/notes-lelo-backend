@@ -20,6 +20,7 @@ const loginAdmin = (req , res , next) => {
 }
 
 const signUp = async (req , res , next) => {
+    console.log(req.body)
   const {name , email , password, course, college,gender, semester} = req.body
   let existingUser
   try{
