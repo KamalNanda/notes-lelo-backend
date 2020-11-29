@@ -20,8 +20,8 @@ const loginAdmin = (req , res , next) => {
 }
 
 const signUp = async (req , res , next) => {
-    console.log(req.body)
-  const {name , email , password, course, college,gender, semester} = req.body
+  console.log(req.body)
+  const {name , email , password, course, college,gender, semester, imgUrl} = req.body
   let existingUser
   try{
     existingUser = await User.findOne({email : email})
@@ -43,7 +43,8 @@ const signUp = async (req , res , next) => {
     course,
     college,
     gender,
-    semester
+    semester,
+    imgUrl
   })
   try {
     await newUser.save()
@@ -90,7 +91,7 @@ const socialRegister = async(req, res, next) => {
 }
 
 const socialLogin = async(req, res, next) => {
-  const {name , email , password, course, college, semester} = req.body
+  const {name , email , password, course, college, semester,gender,imgUrl} = req.body
   let existingUser
   try{
     existingUser = await User.findOne({email : email})
@@ -108,7 +109,9 @@ const socialLogin = async(req, res, next) => {
     password,
     course,
     college,
-    semester
+    semester,
+    gender,
+    imgUrl
   })
   try {
     await newUser.save()
@@ -122,7 +125,7 @@ const socialLogin = async(req, res, next) => {
 const getUsers = async (rq, res, next) => {
   let users
   try{
-    users = await User.find({} , '-password')
+    users = await User.find({})
   } catch (error){
     const err= "Fetching User Failed! Try Later "
     next (error)
