@@ -32,7 +32,7 @@ const likeNote = async (req,res,next) => {
 
   let note
   try{
-    note = await Note.findById(noteId)
+    note = await Note.findById(notesId)
   }
   catch(err){
     console.log("note.js line 38", err)
@@ -74,7 +74,7 @@ const dislikeNote = async (req,res,next) => {
 
   let note
   try{
-    note = await Note.findById(noteId)
+    note = await Note.findById(notesId)
   }
   catch(err){
     console.log("note.js line 38", err)
