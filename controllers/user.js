@@ -147,7 +147,32 @@ const socialLogin = async(req, res, next) => {
   res.status(201).json({newUser})
 }
 
-const getUsers = async (rq, res, next) => {
+const editUser = async (req,res,next) => {
+  let editedUser 
+  try{
+    editedUser = await User.findById(req.params.userId)
+  } catch(err){
+    console.log(err)
+    return next(err)
+  }
+
+  editedUser.name = req.body.name,
+  editedUser.course = req.body.course,
+  editedUser.college = req.body.college,
+  editedUser.semester = req.body.semester,
+  editedUser.gender = req.body.gender
+
+  try{
+    await editedUser.save()
+  } catch(err){
+    console.log(err)
+    return next(err)
+  }
+  res.status(200).json({message:"User Profile Edited", data: editedUser})
+}
+
+
+const getUsers = async (req, res, next) => {
   let users
   try{
     users = await User.find({})
@@ -164,3 +189,4 @@ exports.getUsers = getUsers
 exports.socialLogin= socialLogin
 exports.socialRegister = socialRegister
 exports.loginAdmin = loginAdmin
+exports.editUser = editUser

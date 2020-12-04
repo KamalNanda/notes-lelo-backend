@@ -1,15 +1,23 @@
+
 const express= require('express')
 const controllers = require('../controllers/note')
 const userControllers = require('../controllers/user')
+const messageControllers = require('../controllers/messages')
 const router = express.Router()
-
+const fileUpload = require('../middleware/image-upload')
 
 router.get('/' , (req , res , next)=> {
     res.json("Notes Lelo!!!")
 })
+router.get('/api' , (req , res , next)=> {
+    res.json("Notes Lelo!!!")
+})
 router.get('/api/notes', controllers.getAllNotes)
+router.get('/api/messages', messageControllers.getMessages)
+router.post('/api/messages', messageControllers.createMessage)
 router.get('/api/notes/:notesId' , controllers.getNotesById )
-router.post('/api/notes' , controllers.createNotes)
+router.put('/api/edituser/:userId', userControllers.editUser)
+router.post('/api/notes', fileUpload.single('document') , controllers.createNotes)
 router.delete('/api/notes/:notesId' , controllers.deleteNotes)
 router.post('/api/adminLogin', userControllers.loginAdmin)
 router.patch('/api/notes/:notesId' , controllers.updateNotes)
