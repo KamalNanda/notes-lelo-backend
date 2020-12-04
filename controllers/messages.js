@@ -33,5 +33,23 @@ const getMessages = async (req,res,next) => {
     }
     res.send({messages})
 }
+const deleteMessage = async (req , res , next)=> {
+    const messageId = req.params.messageId
+    let delmessage
+    try{
+        delmessage = await Message.findById(messageId)
+    } catch(err) {
+        console.log(err)
+        return next(err)
+    }
+    try {
+        await delmessage.remove()
+    } catch(err) {
+        console.log(err)
+        return next(err)
+    }
+    res.status(200).json("Deleted")
+}
 exports.createMessage = createMessage
 exports.getMessages = getMessages
+exports.deleteMessage = deleteMessage
