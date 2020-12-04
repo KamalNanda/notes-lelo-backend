@@ -4,7 +4,6 @@ const controllers = require('../controllers/note')
 const userControllers = require('../controllers/user')
 const messageControllers = require('../controllers/messages')
 const router = express.Router()
-const fileUpload = require('../middleware/image-upload')
 
 router.get('/' , (req , res , next)=> {
     res.json("Notes Lelo!!!!")
