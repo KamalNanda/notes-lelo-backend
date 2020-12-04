@@ -7,7 +7,7 @@ const router = express.Router()
 const fileUpload = require('../middleware/image-upload')
 
 router.get('/' , (req , res , next)=> {
-    res.json("Notes Lelo!!!")
+    res.json("Notes Lelo!!!!")
 })
 router.get('/api' , (req , res , next)=> {
     res.json("Notes Lelo!!!")
