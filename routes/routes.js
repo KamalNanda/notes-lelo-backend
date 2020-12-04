@@ -12,6 +12,7 @@ router.get('/api' , (req , res , next)=> {
     res.json("Notes Lelo!!!")
 })
 router.get('/api/notes', controllers.getAllNotes)
+router.delete('/api/messages/:messageId' , messageControllers.deleteMessage)
 router.get('/api/messages', messageControllers.getMessages)
 router.post('/api/messages', messageControllers.createMessage)
 router.get('/api/notes/:notesId' , controllers.getNotesById )
