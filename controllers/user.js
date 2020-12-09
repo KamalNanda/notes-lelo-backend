@@ -171,7 +171,23 @@ const editUser = async (req,res,next) => {
   res.status(200).json({message:"User Profile Edited", data: editedUser})
 }
 
-
+const deleteUser = async (req , res , next)=> {
+    const userId = req.params.userId
+    let delUser
+    try{
+        delUser = await User.findById(userId)
+    } catch(err) {
+        console.log(err)
+        return next(err)
+    }
+    try {
+        await delUser.remove()
+    } catch(err) {
+        console.log(err)
+        return next(err)
+    }
+    res.status(200).json("Deleted")
+}
 const getUsers = async (req, res, next) => {
   let users
   try{
@@ -185,6 +201,7 @@ const getUsers = async (req, res, next) => {
 }
 exports.login = login
 exports.signUp = signUp
+exports.deleteUser = deleteUser
 exports.getUsers = getUsers
 exports.socialLogin= socialLogin
 exports.socialRegister = socialRegister
