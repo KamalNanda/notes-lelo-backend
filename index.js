@@ -16,8 +16,8 @@ app.use((req,res,next)=>{
     next(); 
 })
 let port = process.env.PORT || 3000
-app.use('/' ,routes)
-mongoose.connect('mongodb+srv://KamalNanda:KamalNanda@cluster0-jpk3x.mongodb.net/test?retryWrites=true&w=majority' , {useNewUrlParser : true , useUnifiedTopology: true })
+app.use('/' ,routes) 
+mongoose.connect('mongodb+srv://KamalNanda:KamalNanda@cluster0.jpk3x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' , {useNewUrlParser : true , useUnifiedTopology: true })
 .then(()=> {
 app.listen(port, ()=>{console.log(`A Node.Js API is linstening on port 3000`)})   
 })
